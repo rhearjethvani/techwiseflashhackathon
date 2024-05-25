@@ -1,28 +1,22 @@
-from config import *
 import pygame
-from pygame.locals import *
-import time
+from config import *
+pygame.init()
 
-class Game:
-    def __init__(self) -> None:
-        pygame.init()
-        self.running = True
-        pygame.display.set_caption("Breakout")
-        self.surface = pygame.display.set_mode((WINDOW_WIDTH,WINDOW_HEIGHT))
-        self.surface.fill(WHITE)
+game_in_play = True
+score = 0
+lives = 5
 
-    def run(self):
-        while self.running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                if event.type == KEYDOWN:
-                    if event.key == K_UP:
-                        print("the up key has been pressed down")
-            pygame.display.flip()
-            time.sleep(SLEEP_TIME)
-        pygame.quit()
+screen = pygame.display.set_mode((800, 600))
+clock = pygame.time.Clock()
 
-if __name__ == "__main__":
-    game = Game()
-    game.run()
+while game_in_play:
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+            game_in_play = False
+    
+    clock.tick(60)
+
+    screen.fill(BLACK)
+
+    pygame.display.flip()
